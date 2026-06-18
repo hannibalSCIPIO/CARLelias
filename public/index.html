@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DARK JUSTICE | The Shadow Strikes</title>
+    <link rel="icon" href="/favicon.jpg" type="image/jpeg" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #c9a962;
+            --blood: #8b0000;
+            --text: #e0e0e0;
+            --glow: #ff4444;
+        }
+        
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--blood);
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            color: var(--glow);
+            text-shadow: 0 0 10px var(--blood);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--glow);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, var(--primary) 70%);
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%238b0000" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 12vw, 8rem);
+            letter-spacing: 0.2em;
+            color: var(--glow);
+            text-shadow: 0 0 30px var(--blood), 0 0 60px var(--blood);
+            margin-bottom: 1rem;
+            animation: flicker 3s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.8; }
+            94% { opacity: 1; }
+            96% { opacity: 0.9; }
+            97% { opacity: 1; }
+        }
+        
+        .hero .tagline {
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 3rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--blood);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border: 2px solid var(--blood);
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--glow);
+            box-shadow: 0 0 20px var(--blood);
+        }
+        
+        /* Story Section */
+        .story {
+            padding: 5rem 2rem;
+            background: var(--secondary);
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .story h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.2em;
+            color: var(--glow);
+            margin-bottom: 2rem;
+        }
+        
+        .story p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Merch Section */
+        .merch {
+            padding: 5rem 2rem;
+            background: var(--primary);
+        }
+        
+        .merch h2 {
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 3rem;
+        }
+        
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .merch-item {
+            background: var(--secondary);
+            border: 1px solid #333;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .merch-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--glow);
+        }
+        
+        .merch-item .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .merch-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        
+        .merch-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .merch-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Support Section */
+        .support {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
+            text-align: center;
+        }
+        
+        .support h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .support p {
+            color: #888;
+            margin-bottom: 2rem;
+        }
+        
+        .support-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .support-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        
+        .support-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        
+        footer p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #444;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">DARK <span>JUSTICE</span></div>
+        <ul>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#merch">Merch</a></li>
+            <li><a href="#support">Support</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>DARK JUSTICE</h1>
+            <p class="tagline">When the law fails... the shadow strikes.</p>
+            <a href="#story" class="cta-button">Enter the Darkness</a>
+        </div>
+    </section>
+    
+    <section class="story" id="story">
+        <div class="story-content">
+            <h2>THE STORY</h2>
+            <p>In a world where justice is bought and sold, one man takes the law into his own hands.</p>
+            <p>Operating from the shadows, DARK JUSTICE fights for those who cannot fight for themselves. The corrupt tremble at the whisper of his name. The innocent finally have hope.</p>
+            <p>This is not a story of heroes in shining armor. This is a tale of darkness, redemption, and the thin line between justice and vengeance.</p>
+            <p><em>CARLelias</em> — The keeper of dark justice.</p>
+        </div>
+    </section>
+    
+    <section class="merch" id="merch">
+        <h2>OFFICIAL MERCHANDISE</h2>
+        <div class="merch-grid">
+            <div class="merch-item">
+                <div class="icon">👕</div>
+                <h3>Dark Justice T-Shirt</h3>
+                <p>Premium cotton. Bold design.</p>
+                <a href="#" class="merch-link">Coming Soon →</a>
+            </div>
+            <div class="merch-item">
+                <div class="icon">🎽</div>
+                <h3> tank Top</h3>
+                <p>Comfortable for night operations.</p>
+                <a href="#" class="merch-link">Coming Soon →</a>
+            </div>
+            <div class="merch-item">
+                <div class="icon">🧢</div>
+                <h3>Cap</h3>
+                <p>Embroidered logo. One size.</p>
+                <a href="#" class="merch-link">Coming Soon →</a>
+            </div>
+            <div class="merch-item">
+                <div class="icon">🖼️</div>
+                <h3>Posters & Prints</h3>
+                <p>High-quality art prints.</p>
+                <a href="#" class="merch-link">Coming Soon →</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="support" id="support">
+        <h2>SUPPORT THE CAUSE</h2>
+        <p>Help keep justice alive. Your support makes the shadow stronger.</p>
+        <div class="support-buttons">
+            <a href="https://ko-fi.com" target="_blank" class="support-btn">☕ Buy Me a Coffee</a>
+            <a href="https://patreon.com" target="_blank" class="support-btn">★ Patreon</a>
+            <a href="https://gumroad.com" target="_blank" class="support-btn">🛒 Gumroad</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2026 DARK JUSTICE. All rights reserved.</p>
+        <p class="disclaimer">DARK JUSTICE is a fictional concept. All characters and stories are fictional. This site is for entertainment purposes only.</p>
+    </footer>
+</body>
+</html>
